@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build:
+      context: . # current working directory (./client)
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app # the . is current working dir on my machine; ":" means map all files/folders to /app dir inside container
+      - /app/node_modules # this means do NOT map the node_modules dir
+  tests:

@@ -1,0 +1,15 @@
+FROM node:alpine
+
+WORKDIR './app'
+
+COPY package.json .
+RUN npm install
+
+# You don't need this copy instruction w/docker-compose
+# b/c d-c is mapping to local files, but do need for prod
+COPY . .
+
+CMD ["npm", "run", "start"]
+# run this after building to override ^this
+# default commanf
+# docker run -it 044511272e22 npm run test
